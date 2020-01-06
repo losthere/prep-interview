@@ -1,0 +1,41 @@
+agile
+jenkin
+winscp
+putty
+github
+
+1)Tell me about ur project?
+MRM-Medical Record Manager-record meaning prescription/charts here. we manage prescriptions/charts to cross check the transaction audits submitted by payer.
+
+we load member(patient) and provider(hospital) info in our system.chart id is generated on the basis of that.we appoint schedules and send vendors(ours or cients) to get the charts from providers.now there are 4 steps:
+1.coding- our chart ops team does coding(HCC codes(umberalla term for diagnosis codes and procedural codes)) to fill a form.here they can say that image is not clear and escalate to supervisor.supervisor will resolve the issue.
+2.SLR-cross checking coding data.
+3.QA-Quality Analysis-if any HCC is not valid,delete it or else click on valid.
+4.CVQA-Sees if the HCCs documented marked valid by CV are correct or not using data from CornerStone,EDPS,etc.the data to cornerstone or edps comes from payer.on comapring these two report is sent.
+
+some other team then determines how much more how much less the payer paid to the hospital using transaction audit from CMS.
+
+
+ FileInputStream fis = new FileInputStream("Awesome CV.zip"); 
+        ZipInputStream jis = new ZipInputStream(fis); 
+        PrintStream cout=System.out; 
+  
+        //reading the next ZIP file entry 
+        ZipEntry ze = jis.getNextEntry(); 
+  
+        //illustrating getName() 
+        cout.println(ze.getName()); 
+		
+//bulk upload
+
+//raps
+
+//performnce improvement
+//mail
+//JavaMail Api-SMTP Server required-JavaMailAPI object used to create MimeMessage.No need to deal with session-MimeMessageHelper object  created from MimeMessage
+// msgHelper.setFrom(from); msgHelper.setTo(to);   msgHelper.setSubject(subject); msgHelper.setText(content, isHtmlContent);    mailSender.send(mimeMessage);;
+
+//disable user
+
+Q2. How did u use webservices in ur project?
+

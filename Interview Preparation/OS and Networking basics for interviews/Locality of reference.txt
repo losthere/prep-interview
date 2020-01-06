@@ -1,0 +1,17 @@
+Locality of reference is accessing a value or related storage frequently.
+
+And the types are temporal, spatial and sequential.
+
+Temporal: It tells us whether memory locations in a program are likely to be accessed again in the near future. A method has high temporal locality if it is called repeatedly in a short period of time.
+
+spatial : If the storage has been accessed then likelihood of accessing the storage nearby that, is high.
+
+sequential: storage is accessed sequentially in ascending or descending order.
+
+well, let us see why we need locality of reference ?
+
+Our cache is in between the primary memory and the processor. suppose we have 6 instructions to execute. let us say, it takes 100 ns (nano seconds) to fetch instruction from primary memory to cache and 20 ns from cache to processor and 110 ns from primary memory to processor directly without cache been involved. so without the intervention of cache memory it takes (110*6) = 660ns to execute 6 instructions but when cache memory is present it takes (100 ns +20 ns)*6 instructions = 720 ns to execute 6 instructions which is not really great! Because of this the locality of reference comes into picture!!
+
+When the processor searches for an instruction “i”, the probability will be high, that after execution of instruction “i”, it will search for “i+1”. so the instructions which are present nearby in the memory are requested from the processor. Now, we can bring all those 6 instructions simultaneously to cache. Therefore the time taken to execute those 6 instructions will be 100ns (primary memory to cache) + (6 instructions *20 ns(cache to processor)) =220 ns as CPU executes one instruction at a time.
+
+This increases optimization.

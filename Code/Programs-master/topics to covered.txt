@@ -1,0 +1,6 @@
+bottom and top down approach of DP
+2 properties of DP
+unordered and ordered map etc
+questions related to XOR
+good practice of DP problems
+complexity of recursions

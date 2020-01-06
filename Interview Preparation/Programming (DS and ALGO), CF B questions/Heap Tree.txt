@@ -1,0 +1,24 @@
+Heap tree-is a binary tree or 3-nary..or n-ary tree.It a an almost complete binary tree.Almost complete binary tree means leaves should be present in last and last but one level and leaves in the last level should be filled from left to right.
+
+Two types - 1)max heap(root should be maximum  than the children and it should happen for every sub tree) 2) min heap
+Note - Whatever is true for complete binary tree, is complete for almost complete binary tree as well.
+			*	-----height 2  (Height of a node is the longest route from that node to any leaf)
+		   /\
+height 1  *  *---height 0
+		 /
+		*----height 0
+		Height of tree is height of the root
+Maximum number of nodes in a tree = 2^(h+1) -1 
+Height of a almost complete binary tree = floor(logn) where n is maximum number of nodes
+
+In an almost complete binary tree what are the leaves' indexes.--floor(n/2)+1 to n where n is the number of nodes in the 
+
+
+heap sort using max and min heap
+Kth largest or smallest element using max and min heap (for continous stream as well)
+
+merge K sorted array and linklist
+nearly sorted array
+operations on binary min heap
+find median in array
+rearrange characters

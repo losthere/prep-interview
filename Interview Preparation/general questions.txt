@@ -1,0 +1,65 @@
+- what is diffrence between framework and library?
+- what is dom?
+- what is rest api and soap and odata services?
+- how to extend list so that it works as set - what changes are needed for the same? 
+-what is difference between jar and war?
+(java archive and web archive-when u build a stand alone application for client u can give the jar file to the client simply. but when u build
+web application u need the war file and that needs to be deployed on the server)
+-what is the difference between transient and static while serialization?
+(trasient variable do not participate in serialization and static variable gives default value while de serialization)
+-why we use synchronise key word?
+(to enable lock of the object so that it can work in multithreaded environment)
+-what is difference between runnable interface and thread class?
+(runnable is present in java.lang,it has only one method-publc void run.
+thread is a concrete class, present in java.run,implements runnable interface with dummy implementation)
+-which one is better?
+-java 1.5 feature?
+(enum,enhanced for loop,variable argument,generics,autoboxing)
+-annotations in java?
+https://www.javatpoint.com/java-annotation
+-why we need autoboxing?
+(till java 1.4,to to store any primitive int value into collections(since add method accepts object), we first had to convert it into Integer class object manually. but from java 1.5,it is automatically converted)
+-java 1.6 features?
+not much change,compiler related api,xml processing
+-java 1.7 features?
+(in one catch block u can mention multiple exceptions,try with resource(now no need to close the resources within finally)
+-what is wsdl file?
+(web service descriptor language-suppose u have one class and method,this class and methods should be used by client,so complete info is 
+stored in wsdl file in form of xml.this wsdl file when u give this to the client using ide it will generate class corresponding to the wsdl file and that service they can utilise)
+-what is difference between soap based and rest based?
+soap uses statndard protcols rest do not
+soap forces u to use only xml for communication but rest u can use xml,pdf,string,json,html
+soap are heavy weight and u must use some ide to develope that but rest is so light weight u can use in notepad also
+for testing soap u have to use softwares, but rest u can test using urls also
+
+-what is autowiring?
+in spring u can inject dependency in 2 ways, using implicit wiring and explicit wiring.
+explicit wiring means u have to configure the bean as well as the dependency that bean has.for example if u have setters then u have to use setter tag or if u have constructors then u have to use constructor-arg like that.
+when u use autowiring then everything will be done by the ioc container
+
+-main interfaces in spring?
+application context
+xml bean factory
+
+-difference between application context and xml bean factory
+application context-eager loading
+xml bean factory-lazy loading
+
+-how to get bean object from application context?
+
+-main interfaces in hibernate?
+configuration
+session
+transacion
+query
+sessionFactory
+
+-load vs get method in hibernate?
+load first searches in cache memory then in db.if data not there for that identifier it will throw exception called data not found
+get will directly search into db and if not found it will not throw exception.
+
+-how will you store data in hibernate?
+
+-how can u maintain hierarchy in hibernate?
+using @inheritance annotation
+but 

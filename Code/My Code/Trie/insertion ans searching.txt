@@ -1,0 +1,48 @@
+Trie is an efficient information reTrieval data structure. If we store keys in binary search tree, a well balanced BST will need time proportional to M * log N, where M is maximum string length and N is number of keys in tree. Using Trie, we can search the key in O(M) time. However the penalty is on Trie storage requirements
+
+public class Trie {
+
+    private class TrieNode {
+        Map<Character, TrieNode> children;
+        boolean endOfWord;
+        public TrieNode() {
+            children = new HashMap<>();
+            endOfWord = false;
+        }
+    }
+
+    private final TrieNode root;
+    public Trie() {
+        root = new TrieNode();
+    }
+
+    public void insert(String word) {
+        TrieNode current = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            if (node == null) {
+                node = new TrieNode();
+                current.children.put(ch, node);
+            }
+            current = node;
+        }
+        //mark the current nodes endOfWord as true
+        current.endOfWord = true;
+    }
+
+    public boolean search(String word) {
+        TrieNode current = root;
+        for (int i = 0; i < word.length(); i++) {
+            char ch = word.charAt(i);
+            TrieNode node = current.children.get(ch);
+            //if node does not exist for given char then return false
+            if (node == null) {
+                return false;
+            }
+            current = node;
+        }
+        //return true of current's endOfWord is true else return false.
+        return current.endOfWord;
+    }
+}

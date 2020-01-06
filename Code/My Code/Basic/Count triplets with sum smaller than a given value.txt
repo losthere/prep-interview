@@ -1,0 +1,36 @@
+import java.util.Arrays;
+public class Test{
+    static void fun(int a[],int sum)
+    {
+        Arrays.sort(a);
+        int n = a.length;
+        
+        int res = 0;
+        for(int i=0; i<n-2;i++)
+        {
+            int k=n-1;
+            for(int j=i+1;j<n;)
+            {
+                if(a[i]+a[j]+a[k] < sum)
+                {
+                    res =res+ k-j;
+                    j++;
+                }
+                else if(a[i]+a[j]+a[k] >= sum)
+                    --k;
+                if(j==k)
+                break;
+            }
+        }
+       
+        System.out.print(" "+res);
+       
+    }
+
+     public static void main(String []args){
+        int arr[] = {5, 1, 3, 4, 7};
+        int sum =12;
+        fun(arr,sum);
+        
+     }
+}

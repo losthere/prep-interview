@@ -1,0 +1,5 @@
+HashMap is a great advantage for us because it is so versatile and fits in a lot of use cases:
+
+Want to load objects from an SQL result set and marshal them over the network? use a HashMap.
+Want to group some log file content according to a certain field? HashMap is available.
+Want to move some arbitrary data around without the restriction of creating a POJO or DTO? Oh! Hail! HashMap.

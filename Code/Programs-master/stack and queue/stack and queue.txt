@@ -1,0 +1,6 @@
+expression evaluation for postfix and prefix notation
+maximum rectangular area in histogram
+rain water trapped
+stock span problem
+maximum sliding window 
+implement minimum stack

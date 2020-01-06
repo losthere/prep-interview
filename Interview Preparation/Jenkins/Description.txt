@@ -1,0 +1,110 @@
+SCM-Source Control Management Tool like github
+Need for Jenkins - When we need to configure a job for CI/CD (Continous Integration/Continous Delivery)
+We Can go for Either CI only or CD only or CI/CD both
+Jenkins-Purspose-Build/Deply/Test
+Jenkins was earlier very UI driver, hence users had to create jobs manually through browser for building deploying and testing.
+
+Intrduction of Jenkin pipeline-
+users now can implement a project’s entire build/test/deploy pipeline in a Jenkinsfile and store that alongside their code, treating their pipeline as another piece of code checked into source control.Jenkins Pipeline provides an extensible set of tools for modeling simple-to-complex delivery pipelines "as code".
+
+2 types of pipelines- scripted pipelines(we will study this) , declarative pipeline
+Jenkinfile ko pipeline script bolte
+The script is same for windowa/linux/mac
+We can keep the script file in SCM eg-git(benefit is we can keep track of version) or we can keep it in jenkins configuration
+#!/usr/bin/env groovy
+
+// The Jenkins Global Pipeline Library that is being used is: https://github.optum.com/jenkins-pipelines/global-pipeline-library
+@Library("com.optum.jenkins.pipeline.library@master") _
+
+pipeline {
+    agent {label 'docker-fortify-slave'}
+
+    environment {
+        // Credentials
+        MULTIPURPOSE_CREDENTIALS = 'MRM_SVC'
+        ACCESSTOKEN = 'GitHubPersonalAccessToken'
+    }
+    options {
+      buildDiscarder(logRotator(numToKeepStr: '3'))
+    }
+    stages {
+        stage ('Build') {
+            steps {
+                // determineArtifactVersion()
+                echo "Artifact version is ${env.ARTIFACT_VERSION}"
+                //glMavenBuild mavenGoals: "-B -f pom.xml clean org.jacoco:jacoco-maven-plugin:0.7.4.201502262128:prepare-agent install", pomFile: "pom.xml" , settingsXml: "settings.xml" // ci.env needed if using UHG parent pom
+                glMavenBuild mavenGoals: "-B -f pom.xml clean install", pomFile: "pom.xml" , settingsXml: "settings.xml"
+                archive includes: '**/target/*.war'
+            }
+        }
+        stage('Sonar') {
+        	when { expression { return env.BRANCH_NAME == 'master123' || env.BRANCH_NAME == 'development123' } }
+            steps {
+                glSonarMavenScan productName:"GCM", gitUserCredentialsId:"${env.ACCESSTOKEN}", pomFile: "pom.xml", settingsXml: "settings.xml"
+            }
+        }
+      stage('Artifactory') {
+         steps {
+            // pass deploy at end to upload all the artifacts
+              glMavenArtifactoryDeploy artifactoryUserCredentialsId:"${env.MULTIPURPOSE_CREDENTIALS}", pomFile:"pom.xml", deployAtEnd:true , settingsXml: "settings.xml"
+          }
+       }
+       stage('Fortify') {
+           when { branch 'development123' }
+           steps {
+            glFortifyScan fortifyBuildName:'gcm-nuqa-web',
+                           fortifyHome:"/tools/fortify/HP_Fortify_SCA_and_Apps_17.20",
+                           scarUploadToken:"4b2df5b1-d1fc-4962-bb92-162c6027177a",
+                           scarProjectName:'GlobalChartManagement_UHGWM110-013239',
+                           scarProjectVersion:"Internal",
+                           uploadToScar: false,
+                           criticalThreshold: 100,
+                           highThreshold: 100,
+                           mediumThreshold: 100,
+                           lowThreshold: 100,
+                           sourceExclusions: 'src/main/resources/**/*.*,src/test/**/*.*,target/**/*.*',
+                           archiveArtifacts: true,
+                           uploadScan: false,
+                           fortifyMaxSizeMemory:'-Xmx8G -Xms1G -Xss24M ',
+                           fortifyJdkVersion:'1.8',
+                           fortifyClassPath: '**/dependencies/*.jar'
+              archiveArtifacts artifacts: 'fortify_results/*.*'
+             }
+          }
+    }
+    post {
+        always {
+            echo 'This will always run'
+            emailext body:  "Build URL: ${BUILD_URL}",
+                    subject: "$currentBuild.currentResult-$JOB_NAME",
+                    to: 'OptumInsightGCMDEV_DL@ds.uhc.com',
+                    from: 'gcmbuild@optum.com'
+        }
+        success {
+            echo 'This will run only if successful'
+        }
+        failure {
+            echo 'This will run only if failed'
+        }
+        unstable {
+            echo 'This will run only if the run was marked as unstable'
+        }
+        changed {
+            echo 'This will run only if the state of the Pipeline has changed'
+            echo 'For example, if the Pipeline was previously failing but is now successful'
+        }
+    }
+}
+
+//Function to determine version of artifact being generated, combination of pom version & build number
+def determineArtifactVersion() {
+    def pomText = readFile('pom.xml')
+    def version = (new groovy.util.XmlSlurper().parse("${env.POM_URL}").version.toString().split('-').first()) + '.' + "${env.BUILD_ID}"
+    env.ARTIFACT_VERSION = version
+}
+
+
+
+When the Pipeline has finished executing, you may need to run clean-up steps or perform some actions based on the outcome of the Pipeline. These actions can be performed in the post section.
+
+Stage is used to define tasks example-checkout,code review,packaging,delivery etc

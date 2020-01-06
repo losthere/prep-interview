@@ -1,0 +1,24 @@
+Properies:
+
+1.(a+b)%c = (a%c + b%c)%c
+2.(a*b)%c = ((a%c)*(b%c))%c
+3. (a-b)%c = (a%c - b%c +c )%c
+
+All literal numbers in java are by default ints, which has range -2147483648 to  2147483647 inclusive.
+
+Your literals are outside this range, so to make this compile you need to indicate they're long literals (ie suffix with L):
+
+long min = -9223372036854775808L;
+long max = 9223372036854775807L;
+Note that java supports both uppercase L and lowercase l, but I recommend not using lowercase  l because it looks like a 1:
+
+long min = -9223372036854775808l; // confusing: looks like the last digit is a 1
+long max = 9223372036854775807l; // confusing: looks like the last digit is a 1
+
+long long int and long long are same.Similarly long int and long are same 
+
+long: The long data type is a 64-bit two's complement integer. The signed long has a minimum value of -263 and a maximum value of 263-1. In Java SE 8 and later, you can use the long data type to represent an unsigned 64-bit long, which has a minimum value of 0 and a maximum value of 264-1.
+
+A = 0011 1100
+A << 2 will give 240 which is 1111 0000
+A >> 2 will give 15 which is 1111

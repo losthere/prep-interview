@@ -1,0 +1,25 @@
+public class Test{
+    static void fun(int x,int y, int p)
+    {
+       int res = 1;
+        x=x%p;
+       
+      
+        while(y>0)
+        {
+            if((y&1)==1)
+                res=(res*x)%p;
+            x = (x*x)%p;
+            y = y>>1;
+            System.out.println("test"+res);
+        }
+       
+        System.out.print(res);
+    }
+
+     public static void main(String []args){
+        int a=2,b=5,p=13;
+        fun(a,b,p);
+        
+     }
+}

@@ -1,0 +1,43 @@
+class Test 
+{   
+    //Time Complexity:O(Log(a*b))  O(log max(a,b)) O(log a + log b)  
+    static int gcd_rec(int a, int b) 
+	{ 
+	if (b == 0) 
+		return a; 
+	return gcd_rec(b, a % b); 
+	} 
+	
+	static int gcd_iter(int a,int b)
+    {
+	int temp;
+	while(b>0)
+	{
+		temp=a%b;
+		a=b;
+		b=temp;
+	}
+	return a;
+    }
+    
+    static int gcd_substraction_metod(int a,int b)
+	{
+    	if(a!=b)
+		{
+	    if(a>b)
+		a=a-b;	
+	    else		
+	  	b=b-a;    	
+	    return gcd_substraction_metod(a,b);
+		}
+	return a;  
+   }
+	
+	public static void main(String[] args) 
+	{ 
+		int a = 98, b = 56; 
+		System.out.println("GCD of " + a +" and " + b + " is " + gcd_substraction_metod(a, b)); 
+		System.out.println("GCD of " + a +" and " + b + " is " + gcd_iter(a, b)); 
+		System.out.println("GCD of " + a +" and " + b + " is " + gcd_rec(a, b)); 
+	} 
+} 

@@ -1,0 +1,18 @@
+USE [BPMR_Modeler_CCF]
+GO
+/****** Object:  StoredProcedure [dbo].[Selectemployee]    Script Date: 3/15/2018 12:33:08 PM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+EXEC Selectemployee 100,'SR','LOC','DES'
+ALTER PROCEDURE [dbo].[Selectemployee]
+@empId int,
+@empName varchar(100),
+@empLoc varchar(100),
+@empDes varchar(100)
+AS 
+BEGIN
+INSERT INTO EMPLOYEE VALUES (@empId,@empName, @empLoc, @empDes)
+END
+

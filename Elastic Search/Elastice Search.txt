@@ -1,0 +1,17 @@
+Elastic search
+
+It is a component consisting of a search engine and no-sql database.
+
+Elasticsearch can be used as a replacement of document stores like MongoDB and RavenDB.
+
+kibana is built on top of logstash
+nohub
+
+
+Cryptography
+http://www.tutorialsteacher.com/https/how-ssl-works
+https://www.khanacademy.org/computing/computer-science/cryptography/modern-crypt/v/rsa-encryption-part-4
+
+SSL technique does not happen at any networking layer.
+RSA is modern algorithm . However to make it more secure we use salting.
+https://www.thesslstore.com/blog/difference-encryption-hashing-salting/

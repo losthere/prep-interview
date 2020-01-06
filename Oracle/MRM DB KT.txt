@@ -1,0 +1,139 @@
+DB KT:
+varchar2-all the memory is not allocated right away
+varchar-all the memory is allocated right away
+number(5,2) 90909.23 (5 before decimal,2after decimal)
+
+----DAY 1 --------- just for reference
+The best way I found to store these , while I was in my training period was MICROSOFT ONENOTE , its preloaded in your system , use that for organizing .
+
+
+
+----DBMS  ----RDBMS ------------------
+-------ORACLE DBMS-------------
+-------TYPES OF LANGUAGE IN ORACLE
+------------------ DDL -------------- (DATATBASE DEFINATION LANGUAGE) ---------- CREATE , ALTER , DROP -----cannot be undor , by implict commit -----
+------------------ DML----------------(DATABASE MANIPULATION LANGUAGE) ---------data , these  ---IMPLICT COMMIT,;
+------------------ DQL---------- READ (SELECT * FROM EMPLOYEE)
+------------------ TCL -------------(TRanscation controlalnguage ) --- ROLLBACK(UNDO) , COMMIT(ake this permanent)
+--------------------DESCRIBE---------
+
+------------
+ACCOUNT 1           ---      ACOOUNT 2
+
+LOGIN ACOUNT 1
+ENTER ACCOUNT 2
+500 1------>2 
+
+
+TRANSACTION A starts
+
+1----- 500 from your account 1   (ROLLABACK ------)
+2------500 would be added to account2
+3--------
+commit;
+TRANSACTION A ENDS;
+
+
+DESCRIBE GCM_PROJECT;
+---------------
+
+CREATE TABLE EMPLOYEE
+(
+EMPLOYEE_ID NUMBER(6),
+EMPLOYEE_NAME VARCHAR2(100),
+EMPLOYEE_DOB DATE
+);
+
+SELECT ALL FROM EMPLOYEE;
+SELECT * FROM EMPLOYEE; --- ALL means *
+
+SELECT * FROM EMPLOYEE;
+COMMIT;
+ROLLBACK;
+
+INSERT INTO EMPLOYEE VALUES(1,'MANIKUMAR',SYSDATE-3456);
+INSERT INTO EMPLOYEE VALUES(5,'MANIKUMAR');
+
+INSERT INTO EMPLOYEE VALUES('2','MANIKUMAR',SYSDATE-3456);
+INSERT INTO EMPLOYEE VALUES('KK','MANIKUMAR',SYSDATE-3456);
+
+INSERT INTO EMPLOYEE VALUES('KK','MANIKUMAR',SYSDATE-3456);
+
+INSERT INTO EMPLOYEE(EMPLOYEE_NAME,EMPLOYEE_DOB) VALUES('gaurav',SYSDATE-3456);
+
+INSERT INTO EMPLOYEE VALUES(1,'MANIKUMAR',SYSDATE-3456);
+
+SELECT EMPLOYEE_ID,EMPLOYEE_NAME AS EMp_NAME ,EMPLOYEE_NAME  NICE_NAME FROM EMPLOYEE;
+
+
+-----------META DATA -------------------------
+SELECT * FROM USER_TAB_COLUMNS WHERE TABLE_NAME ='EMPLOYEE';-------------------------- 
+SELECT * FROM ALL_TAB_COLUMNS WHERE TABLE_NAME ='EMPLOYEE';
+
+
+SELECT * FROM USER_TAB_COLUMNS WHERE TABLE_NAME ='PROJECT_AUD';-------------------------- 
+SELECT * FROM ALL_TAB_COLUMNS WHERE TABLE_NAME ='PROJECT_AUD';
+
+-----SCHEMA-------------------
+GCMG                     ()
+GCMG_APP -------
+GCMG_CDO -----------
+GCMG_LOADER --------
+
+
+
+
+DESC EMPLOYEE;
+
+ROLLBACK;
+
+
+
+ALTER--------modify something, (structure)
+DROP (DROP TABLE EMPLOYEE_1)
+
+
+ORACLE-----------
+BLOCKS------------------FILE STRCUTURE (INDEXING PROCESSING----------------)
+
+---------------------------
+
+ORACLE
+MYSQL - MICRO
+
+
+TABLE -VIEW -COLUMN SSSSSS
+
+EMPLOYEY -----------------------------------
+
+-EMPLOYEE ID 
+ENAME
+EAME ADDRESS
+DOB
+
+
+
+
+
+VIEW -------------------------------   ()
+
+SELECT * FROM EMPLOYEE;---3
+select * from hr;---4
+
+------------------------------------------
+
+EMPLOYEE                 
+EMPLOYEE_ID
+EMPPYEE_NAME
+
+
+------------------------foriegn key ------------()
+
+PROJECT 
+PROJECT_ID
+PROJECT_NAME
+EMPLOYEE_ID
+
+
+Cobertura
+

@@ -1,0 +1,130 @@
+ORACLE FUNCTIONS
+
+1.Decode - 
+
+SELECT supplier_name,
+DECODE(supplier_id, 10000, 'IBM',
+                    10001, 'Microsoft',
+                    10002, 'Hewlett Packard',
+                    'Gateway') result
+FROM suppliers;
+
+The above DECODE statement is equivalent to the following IF-THEN-ELSE statement:
+
+IF supplier_id = 10000 THEN
+   result := 'IBM';
+
+ELSIF supplier_id = 10001 THEN
+   result := 'Microsoft';
+
+ELSIF supplier_id = 10002 THEN
+   result := 'Hewlett Packard';
+
+ELSE
+   result := 'Gateway';
+
+END IF;
+
+2. Pivot - This means that you can aggregate your results and rotate rows into columns.
+
+order_id	customer_ref	product_id
+50001	SMITH				10
+50002	SMITH				20
+50003	ANDERSON			30
+50004	ANDERSON			40
+50005	JONES				10
+50006	JONES				20
+50007	SMITH				20
+50008	SMITH				10
+50009	SMITH				20
+Now, let's create our cross-tabulation query using the following PIVOT clause:
+
+SELECT * FROM
+(
+  SELECT customer_ref, product_id
+  FROM orders
+)
+PIVOT
+(
+  COUNT(product_id)
+  FOR product_id IN (10, 20, 30)
+)
+ORDER BY customer_ref;
+In this example, the PIVOT clause would return the following results:
+
+customer_ref	10	20	30
+ANDERSON		0	0	1
+JONES			1	1	0
+SMITH			2	3	0
+
+
+3.Case statement
+
+SELECT table_name,
+CASE owner
+  WHEN 'SYS' THEN 'The owner is SYS'
+  WHEN 'SYSTEM' THEN 'The owner is SYSTEM'
+  ELSE 'The owner is another value'
+END
+FROM all_tables;
+
+
+4. 
+
+row_number() over(PARTITION BY
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+5.
+
+
+SELECT TRUNC(TO_DATE('03-FEB-2017'), 'YEAR')
+FROM dual;
+
+SELECT TRUNC(TO_DATE('03-FEB-2017'), 'D')
+FROM dual;
+
+The second parameter in the TRUNC function is the format parameter. This determines what the specified date is truncated to.
+
+For example, if you specify a date of 3-FEB-2017, and a format of "YEAR", then the returned value will be 1-JAN-2017. It will be truncated to the beginning of that year.
+
+If you use the same date but specify a value of "MONTH", it will get truncated to 01-FEB-2017.
+
+6.(+)
+
+https://www.techonthenet.com/oracle/joins.php
+
+It's Oracle's synonym for OUTER JOIN.
+
+SELECT *
+FROM a, b
+WHERE b.id(+) = a.id
+gives same result as
+
+SELECT *
+FROM a
+     LEFT OUTER JOIN b
+     ON b.id = a.id
+7.
+
+EXTRACT(YEAR from dosYear)
+	 
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+11.nth highest salary
+
+SELECT * /*This is the outer query part */
+FROM Employee Emp1
+WHERE (N-1) = ( /* Subquery starts here */
+SELECT COUNT(DISTINCT(Emp2.Salary))
+FROM Employee Emp2
+WHERE Emp2.Salary > Emp1.Salary)
+
+
+select * from (
+  select Emp.*, 
+row_number() over (order by Salary DESC) rownumb 
+from Employee Emp
+)
+where rownumb = n;  /*n is nth highest salary*/

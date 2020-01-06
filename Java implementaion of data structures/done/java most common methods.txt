@@ -1,0 +1,20 @@
+str.toUpperCase()
+Character.isDigit(char)
+Character.isUpperCase(char)
+Character.isLowerCase(char)
+str.length()
+str.charAt(i) 
+
+int t;
+String str;
+Scanner sc = new Scanner(System.in);
+t = sc.nextInt();
+str = sc.nextLine();
+
+int[] arr = {13, 7, 6, 45, 21, 9, 101, 102}; 
+  
+//ascending order
+Arrays.sort(arr);
+
+// Sorts arr[] in descending order 
+Arrays.sort(arr, Collections.reverseOrder());
