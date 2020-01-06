@@ -1,0 +1,105 @@
+Combination of Characters in String (All subsets of characters)
+https://www.youtube.com/watch?v=xTNFs5KRV_g
+
+Find the smallest window in a string containing all characters of another string
+https://leetcode.com/problems/minimum-window-substring/
+
+Print all possible strings of length k that can be formed from a set of n characters
+https://www.geeksforgeeks.org/print-all-combinations-of-given-length/
+
+Longest Palindromic Substring
+https://www.geeksforgeeks.org/longest-palindrome-substring-set-1/
+
+Remove Adjacent Duplicates from a String
+https://www.youtube.com/watch?v=I7xTXJ4OfD4
+
+Check if string is rotated by two places
+https://javarevisited.blogspot.com/2017/07/2-ways-to-check-if-one-string-is-rotation-of-another-String.html
+
+Remove Duplicates from sorted Array
+https://www.youtube.com/watch?v=gf7vdIin0dk
+
+Anagram
+https://www.geeksforgeeks.org/check-whether-two-strings-are-anagram-of-each-other/
+
+Minimum insertions to form a palindrome
+https://www.geeksforgeeks.org/minimum-insertions-to-form-a-palindrome-dp-28/  ----variation of lcs
+
+
+Longest Distinct Characters in the string
+https://www.geeksforgeeks.org/length-of-the-longest-substring-without-repeating-characters/
+
+Implement strstr/indexOf
+Read KMP Algo
+
+Longest Common Prefix
+https://www.geeksforgeeks.org/longest-common-prefix-using-sorting/
+
+flattening a linkedList
+https://www.geeksforgeeks.org/flattening-a-linked-list/
+
+-------------------------------------------------------------------------------------------------------------------------
+Count total set bits in all numbers from 1 to n
+https://www.geeksforgeeks.org/count-total-set-bits-in-all-numbers-from-1-to-n/
+
+Swap all odd and even bits
+https://www.geeksforgeeks.org/swap-all-odd-and-even-bits/
+
+In short, it means that it returns 1 only if exactly one bit is set to 1 out of the two bits in comparison ( Exclusive OR ).
+ A = 5 = 0101, B = 3 = 0011
+ A ^ B = 0101 ^ 0011 = 0110 = 6
+ 
+ Shortest Source to Destination Path- 
+ ----weighted graph-2 options
+ 
+Dijkstra-shortest path from only one given source to all other nodes.-greedy-O(n2)-will not work for NEGATIVE edges
+floyd warshall-shortest path from all nodes to all other nodes-dynamic-O(n3)
+
+
+---unweighted graph - 1 option -modified BFS
+https://www.geeksforgeeks.org/shortest-path-unweighted-graph/
+
+---------------------------------------------------------------
+minimum mst-prims and kruskals-both greedy
+1st step - find minimum edge for both algo
+prims-find all minimum attached
+kruskals more daring-slects all minimum avoiding cycle.if mean heap used O(nlogn)
+
+
+ PriorityQueue<Node> pq = new PriorityQueue<>(new Comparator<Node>() { 
+            public int compare(Node a, Node b) 
+            { 
+                return a.data - b.data; 
+            } 
+        }); 
+  
+ Merge k sorted linked lists 
+ https://www.geeksforgeeks.org/merge-k-sorted-linked-lists-set-2-using-min-heap/
+ 
+ Rearrange characters in a string such that no two adjacent are same
+ https://www.geeksforgeeks.org/rearrange-characters-string-no-two-adjacent/
+ 
+ Find the first non-repeating character from a stream of characters
+ https://www.geeksforgeeks.org/find-first-non-repeating-character-stream-characters/
+ 
+ Minimum time required to rot all oranges
+ https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/
+ 
+ Minimum time required to rot all oranges
+ https://www.geeksforgeeks.org/minimum-time-required-so-that-all-oranges-become-rotten/
+ 
+ public static int largestPrimeFactor(long number) {
+        int i;
+        long copyOfInput = number;
+
+        for (i = 2; i <= copyOfInput; i++) {
+            if (copyOfInput % i == 0) {
+                copyOfInput /= i;
+                i--;
+            }
+        }
+
+        return i;
+    }
+
+}
