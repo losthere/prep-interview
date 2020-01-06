@@ -1,0 +1,65 @@
+Garbage Collection in Java, and with a code snippet, asked how I’d implement my own Garbage Collector?
+http://www.tothenew.com/blog/java-garbage-collection-an-overview/
+https://www.geeksforgeeks.org/mark-and-sweep-garbage-collection-algorithm/----best(algo)
+https://www.w3resource.com/java-tutorial/garbage-collection-in-java.php
+https://stackify.com/what-is-java-garbage-collection/
+https://www.geeksforgeeks.org/garbage-collection-java/
+
+Main objective of Garbage Collector is to free heap memory by destroying unreachable objects.All other application threads are put on hold until garbage is collected.
+
+In C/C++, programmer is responsible for both creation and destruction of objects. Usually programmer neglects destruction of useless objects. Due to this negligence, at certain point, for creation of new objects, sufficient memory may not be available and entire program will terminate abnormally causing OutOfMemoryErrors.
+
+JVM calls Garbage collector.Garbage collector calls finalize method.
+
+There are generally four different ways to make an object eligible for garbage collection.
+Nullifying the reference variable
+Re-assigning the reference variable
+Object created inside method
+Island of Isolation
+
+Garbage collector is best example of Daemon thread as it is always running in background.
+
+We can also request JVM to run Garbage Collector. There are two ways to do it :
+Using System.gc() method : System class contain static method gc() for requesting JVM to run Garbage Collector.
+Using Runtime.getRuntime().gc() method : Runtime class allows the application to interface with the JVM in which the application is running. Hence by using its gc() method, we can request JVM to run Garbage Collector.
+
+When JVM compiles the byte code,objects are created in heap memory.The heap is divided into three sections:
+
+Young Generation: Newly created objects start in the Young Generation. The Young Generation is further subdivided into an Eden space, where all new objects start, and two Survivor spaces, where objects are moved from Eden after surviving one garbage collection cycle. When objects are garbage collected from the Young Generation, it is a minor garbage collection event.
+Old Generation: Objects that are long-lived are eventually moved from the Young Generation to the Old Generation. When objects are garbage collected from the Old Generation, it is a major garbage collection event.
+Permanent Generation: Metadata such as classes and methods are stored in the Permanent Generation. Classes that are no longer in use may be garbage collected from the Permanent Generation.
+
+// Java program to demonstrate requesting 
+// JVM to run Garbage Collector 
+public class Test 
+{ 
+	public static void main(String[] args) throws InterruptedException 
+	{ 
+		Test t1 = new Test(); 
+		Test t2 = new Test(); 
+		
+		// Nullifying the reference variable 
+		t1 = null; 
+		
+		// requesting JVM for running Garbage Collector 
+		System.gc(); 
+		
+		// Nullifying the reference variable 
+		t2 = null; 
+		
+		// requesting JVM for running Garbage Collector 
+		Runtime.getRuntime().gc(); 
+	
+	} 
+	
+	@Override
+	// finalize method is called on object once 
+	// before garbage collecting it 
+	protected void finalize() throws Throwable 
+	{ 
+		System.out.println("Garbage collector called"); 
+		System.out.println("Object garbage collected : " + this); 
+	} 
+} 
+Just before destroying an object, Garbage Collector calls finalize() method on the object to perform cleanup activities. Once finalize() method completes, Garbage Collector destroys that object.
+The finalize() method called by Garbage Collector not JVM.

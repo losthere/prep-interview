@@ -1,0 +1,300 @@
+Dynamic questions
+
+1. Longest Increasing Subsequence
+static int lis(int arr[],int n) 
+    { 
+          int lis[] = new int[n]; 
+          int i,j,max = 0; 
+           for ( i = 0; i < n; i++ ) 
+              lis[i] = 1;
+			  
+           for ( i = 1; i < n; i++ ) 
+              for ( j = 0; j < i; j++ )  
+                         if ( arr[i] > arr[j] && lis[i] < lis[j] + 1) 
+                    lis[i] = lis[j] + 1; 
+         
+           for ( i = 0; i < n; i++ ) 
+              if ( max < lis[i] ) 
+                 max = lis[i]; 
+  
+            return max; 
+    } 
+
+2. Maximum Sum Increasing Subsequence - O(n^2)
+
+ static int maxSumIS(int arr[], int n) 
+    { 
+        int i, j, max = 0; 
+        int msis[] = new int[n]; 
+  
+        for (i = 0; i < n; i++) 
+            msis[i] = arr[i]; 
+     
+        for (i = 1; i < n; i++) 
+            for (j = 0; j < i; j++) 
+                if (arr[i] > arr[j] && 
+                    msis[i] < msis[j] + arr[i]) 
+                    msis[i] = msis[j] + arr[i]; 
+					
+        for (i = 0; i < n; i++) 
+            if (max < msis[i]) 
+                max = msis[i]; 
+  
+        return max; 
+ } 
+	
+3. Longest Common Substring
+ static int LCSubStr(char X[], char Y[], int m, int n)  
+    { 
+       
+        int LCStuff[][] = new int[m + 1][n + 1]; 
+        int result = 0;  
+        
+        for (int i = 0; i <= m; i++)  
+        { 
+            for (int j = 0; j <= n; j++)  
+            { 
+                if (i == 0 || j == 0) 
+                    LCStuff[i][j] = 0; 
+                else if (X[i - 1] == Y[j - 1]) 
+                { 
+                    LCStuff[i][j] = LCStuff[i - 1][j - 1] + 1; 
+                    result = Integer.max(result, LCStuff[i][j]); 
+                }  
+                else
+                    LCStuff[i][j] = 0; 
+            } 
+        } 
+        return result; 
+    } 
+	
+4. Longest Common Subsequence
+ S = “ajblqcpdz”, T = “aefnbtdi”
+ ans-abd
+ int lcs( char[] X, char[] Y, int m, int n ) 
+  { 
+    int L[][] = new int[m+1][n+1]; 
+  
+    for (int i=0; i<=m; i++) 
+    { 
+      for (int j=0; j<=n; j++) 
+      { 
+        if (i == 0 || j == 0) 
+            L[i][j] = 0; 
+        else if (X[i-1] == Y[j-1]) 
+            L[i][j] = L[i-1][j-1] + 1; 
+        else
+            L[i][j] = max(L[i-1][j], L[i][j-1]); 
+      } 
+    } 
+  return L[m][n]; 
+  } 
+5. Largest Sum Contiguous Subarray
+//Kadane's Algo
+static int maxSubArraySum(int a[],int size)  
+{  
+      
+   int max_so_far = a[0]; 
+   int curr_max = a[0]; 
+  
+   for (int i = 1; i < size; i++) 
+   { 
+        curr_max = max(a[i], curr_max+a[i]); 
+        max_so_far = max(max_so_far, curr_max); 
+   } 
+   return max_so_far; 
+}  
+
+6.0 – 1 Knapsack Problem
+ static int knapSack(int W, int wt[], int val[], int n) 
+    { 
+         int i, w; 
+     int K[][] = new int[n+1][W+1]; 
+       
+     for (i = 0; i <= n; i++) 
+     { 
+         for (w = 0; w <= W; w++) 
+         { 
+             if (i==0 || w==0) 
+                  K[i][w] = 0; 
+             else if (wt[i-1] <= w) 
+                   K[i][w] = max(val[i-1] + K[i-1][w-wt[i-1]],  K[i-1][w]); 
+             else
+                   K[i][w] = K[i-1][w]; 
+         } 
+      } 
+       
+      return K[n][W]; 
+    } 
+7. Minimum number of jumps
+private static int minJumps(int[] arr, int n) {  
+
+    int jumps[] = new int[n];  
+    int i, j; 
+           
+    if (n == 0 || arr[0] == 0) 
+         return Integer.MAX_VALUE; 
+           
+   jumps[0] = 0; 
+    for (i = 1; i < n; i++) 
+    { 
+        jumps[i] = Integer.MAX_VALUE; 
+         for (j = 0; j < i; j++) 
+         { 
+              if (i <= j + arr[j] && jumps[j] != Integer.MAX_VALUE) 
+              { 
+                  jumps[i] = Math.min(jumps[i], jumps[j] + 1); 
+                  break; 
+              } 
+          } 
+    } 
+        return jumps[n-1]; 
+    } 
+
+8. Programming Interview Question: Longest Palindromic Substring
+//i deserve video
+
+9.Recursively remove all adjacent duplicates
+https://www.w3resource.com/java-exercises/string/java-string-exercise-55.php
+
+10.permutations of string in lexicographic order   -  O(n)
+public class StringPermutation {
+
+    public List<String> permute(char input[]) {
+        Map<Character, Integer> countMap = new TreeMap<>();
+        for (char ch : input) {
+            countMap.compute(ch, (key, val) -> {
+                if (val == null) {
+                    return 1;
+                } else {
+                    return val + 1;
+                }
+            });
+        }
+        char str[] = new char[countMap.size()];
+        int count[] = new int[countMap.size()];
+        int index = 0;
+        for (Map.Entry<Character, Integer> entry : countMap.entrySet()) {
+            str[index] = entry.getKey();
+            count[index] = entry.getValue();
+            index++;
+        }
+        List<String> resultList = new ArrayList<>();
+        char result[] = new char[input.length];
+        permuteUtil(str, count, result, 0, resultList);
+        return resultList;
+    }
+
+    public void permuteUtil(char str[], int count[], char result[], int level, List<String> resultList) {
+        if (level == result.length) {
+            resultList.add(new String(result));
+            return;
+        }
+
+        for(int i = 0; i < str.length; i++) {
+            if(count[i] == 0) {
+                continue;
+            }
+            result[level] = str[i];
+            count[i]--;
+            permuteUtil(str, count, result, level + 1, resultList);
+            count[i]++;
+        }
+    }
+
+    private void printArray(char input[]) {
+        for(char ch : input) {
+            System.out.print(ch);
+        }
+        System.out.println();
+    }
+
+    public static void main(String args[]) {
+        StringPermutation sp = new StringPermutation();
+        sp.permute("AABC".toCharArray()).forEach(s -> System.out.println(s));
+    }
+}
+
+11. minimum number of coin used to get the current amount
+
+ public int coinChange(int[] coins, int amount) {
+    int max = amount + 1;
+    int[] dp = new int[amount + 1];
+    Arrays.fill(dp, max);  
+
+    dp[0] = 0;
+
+    for (int i = 1; i <= amount; i++) {
+      for (int j = 0; j < coins.length; j++) {
+        if (coins[j] <= i) {
+          dp[i] = Math.min(dp[i], dp[i - coins[j]] + 1);
+        }
+      }
+    }
+    return dp[amount] > amount ? -1 : dp[amount];
+  }
+  
+12. total ways of getting coin change
+https://www.youtube.com/watch?v=DJ4a7cmjZY0
+public int change(int amount, int[] coins) {
+
+  int[][] dp = new int[coins.length+1][amount+1];
+
+  dp[0][0] = 1;
+  
+  for (int i = 1; i <= coins.length; i++) {
+
+    dp[i][0] = 1;
+
+    for (int j = 1; j <= amount; j++) {
+      
+      int currentCoinValue = coins[i-1];
+
+      int withoutThisCoin = dp[i-1][j];
+      int withThisCoin = currentCoinValue <= j ? dp[i][j - currentCoinValue] : 0;
+
+      dp[i][j] = withoutThisCoin + withThisCoin;
+    }
+  }
+
+  
+  13. IsSubset Sum
+  static boolean isSubsetSum(int set[], 
+							int n, int sum) 
+	{ 
+		boolean subset[][] = 
+					new boolean[sum+1][n+1]; 
+	
+		for (int i = 0; i <= n; i++) 
+			subset[0][i] = true; 
+
+		for (int i = 1; i <= sum; i++) 
+			subset[i][0] = false; 
+	
+		for (int i = 1; i <= sum; i++) 
+		{ 
+			for (int j = 1; j <= n; j++) 
+			{ 
+				subset[i][j] = subset[i][j-1]; 
+				if (i >= set[j-1]) 
+				subset[i][j] = subset[i][j] || subset[i - set[j-1]][j-1]; 
+			} 
+		} 
+	
+14. Cutting Rod
+
+static int cutRod(int price[],int n) 
+    { 
+        int val[] = new int[n+1]; 
+        val[0] = 0; 
+  
+        for (int i = 1; i<=n; i++) 
+        { 
+            int max_val = Integer.MIN_VALUE; 
+            for (int j = 0; j < i; j++) 
+                max_val = Math.max(max_val,  
+                                   price[j] + val[i-j-1]); 
+            val[i] = max_val; 
+        }   
+        return val[n]; 
+    } 

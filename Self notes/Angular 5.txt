@@ -1,0 +1,42 @@
+Promise and observable serve the same purpose
+
+Rxjs-library-used for writing asynchronous and event-based programs using observable
+
+Rx.Observable.fromEvent(button,'click')
+.map((data)=>return data.clientY)
+.subscribe((coordinate)=>console.log(coordinate));
+
+Observable have a funnel approach. Output from above statement is used in below statement.(ex- coordinate = data.clientY)
+
+Observer and Observable
+---------------------------
+Obsrvable-wrapper around datasource(button click is datasource is below example)-works mainly with asynchronous data. There are many
+functions which help to acheive this filtering option. Example-map(),throttle()
+map()-transforms values.logic for transformation is written inside map.eg-string to int etc.
+map returns Observable object because only observable can subscribe an observer
+
+observable.map(function(value){
+return 2*value;
+}).subscribe(observe);
+
+Here although we are returning an integer value but internally our RxJS will convert that to an observable
+
+whenever data comes observer executes function on that data. To connect both subscribe function is used.
+Observer methods are-next,error,complete
+if error or complete function is executednext wont get executed.
+
+var observer = {
+next:function(value)
+{
+	console.log(value);
+},
+error:function(error)
+{
+	console.log(error);
+}
+complete:function()
+{
+}
+}
+Rx.observable.fromEvent(button,'click')
+.subscribe(observer)

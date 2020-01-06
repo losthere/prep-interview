@@ -1,0 +1,173 @@
+﻿style="margin-top: 10px;"
+Remove from User\'s Worklist
+
+java.lang.String.split splits on regular expressions, and . in a regular expression means "any character".
+Try temp.split("\\.").
+
+Somethings about browsers
+--------------------------
+It does this so that it can deliver you pages almost instantly. Chrome isn’t just showing you a page, but it’s loading HTML, CSS, JavaScript, media containers and so much more in the background. It could be loading elements for 3D games, a movie, etc — it’s basically an operating system in itself. There’s a lot of media to load in 2017, and that’s just one of the reasons why RAM consumption is so much.
+
+On top of that, Chrome handles its tab in a unique way. When you open Task Manager, you might see a whole bunch of Chrome processes open. This is because Chrome treats each tab as a process. The way, Chrome uses less memory in the background, but on top of that, if a tab were to crash, you would only lose that tab, and not have to close your entire browser, losing some of the websites you might’ve had open.
+
+Java
+------
+
+public static File convertMultipatToFile(MultipartFile file) throws IOException {
+    File convFile = new File(file.getOriginalFilename());
+    convFile.createNewFile();
+    FileOutputStream fos = new FileOutputStream(convFile);
+    fos.write(file.getBytes());
+    fos.close();
+    return convFile;
+}
+//////////////////////////////////////////////////////////////
+There are 4 ways to write a file in 
+1.Write File using BufferedWritter--when number of writes are more.
+public static void usingBufferedWritter() throws IOException
+{
+    String fileContent = "Hello Learner !! Welcome to howtodoinjava.com.";     
+    BufferedWriter writer = new BufferedWriter(new FileWriter("c:/temp/samplefile1.txt"));
+    writer.write(fileContent);
+    writer.close();
+}
+2.Write File using FileWriter--when number of writes are less,when character stream is there
+public static void usingFileWriter() throws IOException
+{
+    String fileContent = "Hello Learner !! Welcome to howtodoinjava.com.";     
+    FileWriter fileWriter = new FileWriter("c:/temp/samplefile2.txt");
+    fileWriter.write(fileContent);
+    fileWriter.close();
+}
+3.Write File using FileOutputStream--for bytes,when file types are image,mp3,etc
+public static void usingFileOutputStream() throws IOException
+{
+    String fileContent = "Hello Learner !! Welcome to howtodoinjava.com.";     
+    FileOutputStream outputStream = new FileOutputStream("c:/temp/samplefile4.txt");
+    byte[] strToBytes = fileContent.getBytes();
+    outputStream.write(strToBytes);  
+    outputStream.close();
+}
+4.Write File using Java 7 Path
+public static void usingPath() throws IOException
+{
+    String fileContent = "Hello Learner !! Welcome to howtodoinjava.com.";     
+    Path path = Paths.get("c:/temp/samplefile7.txt");  
+    Files.write(path, fileContent.getBytes());
+}
+
+String[] barcodeList = StringUtils.split(barcode, ",");
+StringUtils.equals
+boolean validFileName = Stream.of(barcodeList).anyMatch(x -> x.equals(fileName.substring(0, fileName.indexOf('.'))));
+Garbage collection-geeksforgeeks
+Stream.of() vs Arrays.stream()
+---------------------------------------
+java.util.stream--java 8
+Stream.of() is a wrapper over the Arrays.stream() method.
+
+
+##################################################################################################################################
+
+How to iterate over hashmap.
+
+for(Map.Entry<String,String> entry : gfg.entrySet())
+{	
+	System.out.print('key'+ entry.getKey()+'value'+entry.getValue());
+}
+
+Iterator value = map.iterator();
+while (value.hasNext()) { 
+            System.out.println(value.next()); 
+   } 
+
+How to iterate over hashset.
+
+Iterator value = set.iterator();
+while (value.hasNext()) { 
+            System.out.println(value.next()); 
+   }
+   
+Q3  Why HashSet does not have get(Object o) method ?
+Most of the people get puzzled by hearing this question . This question tests the deep understanding of the HashSet class .This question helps the interviewer to know whether candidate has the idea about contains() method in HashSet  class or not .So let jump to the answer
+
+get(Object o) is useful when we have one information linked to other information just like key value pair found in HashMap .So using get() method on one information we can get the second information or vice-versa.
+
+Unlike HashMap , HashSet is all about having unique values or unique objects . There is no concept of keys in HashSet .
+The only information we can derive from the HashSet object is whether the element is present in the HashSet Object or not . If the element is not present in the HashSet then add it otherwise return true leaving HashSet object unchanged. Here, contains() method helps to provide this information.
+
+Due to the above reason there is no get(Object o) method in HashSet.
+
+##################################################################################################################################
+How is hashSet implemeted internally?---using hashmap
+https://www.geeksforgeeks.org/internal-working-of-sethashset-in-java/
+https://javahungry.blogspot.com/2013/08/how-sets-are-implemented-internally-in.html
+
+How is hasmap implemented internally?
+https://www.geeksforgeeks.org/internal-working-of-hashmap-java/
+
+HashSet vs TreeSet
+a) Null value :   HashSet can store  null object while TreeSet does not allow null object. If one try to store null object in TreeSet object , it will throw Null Pointer Exception.
+b)Ordering : hashSet stores in ordered way.Tree set stores in natural way of insertion. If we want to order in tree set then we will have to customize the compareTo method.
+c) Comparision : HashSet uses equals() method for comparison in java while TreeSet uses compareTo() method for maintaining ordering .
+d) Speed : HashSet is much faster than TreeSet,as performance time of HashSet is constant against the log time of TreeSet for most operations (add,remove ,contains and size) . Iteration performance of HashSet mainly depends on the load factor and initial capacity parameters
+
+##################################################################################################################################
+map.containsKey()
+map.get(key) returns null if not present
+-----------------------------------------------------------------------------------------------------------------------
+reqParams means URL parameters will be sent. 
+function reqParams(params) {
+	var queryParams = "";
+	for ( var key in params) {
+		queryParams += encodeURIComponent(key) + "=" + encodeURIComponent(params[key]) + "&";
+	}
+	return queryParams;
+}
+application/x-www-form-urlencoded --- for url encoded value
+application/json --- for json value
+
+var obj = {}; //json
+
+-----------------------------------------------------------------------------------------------------------------------
+for comparing use StringUtils.equals(str1,str2)
+The comparison is case sensitive.
+ StringUtils.equals(null, null)   = true
+ StringUtils.equals(null, "abc")  = false
+ StringUtils.equals("abc", null)  = false
+ StringUtils.equals("abc", "abc") = true
+ StringUtils.equals("abc", "ABC") = false
+
+== vs equals() vs hashcode()
+hascode() and equals() belong to Object
+
+https://javaconceptoftheday.com/when-to-use-equals-hashcode-on-strings/ -- very good
+
+find majority element 
+https://www.geeksforgeeks.org/majority-element/
+
+##################################################################################################################################
+
+The Enumeration interface defines the methods by which you can enumerate (obtain one at a time) the elements in a collection of objects.
+
+This legacy interface has been superceded by Iterator. Although not deprecated, Enumeration is considered obsolete for new code
+
+public class EnumerationTester {
+
+   public static void main(String args[]) {
+      Enumeration days;
+      Vector dayNames = new Vector();
+      
+      dayNames.add("Sunday");
+      dayNames.add("Monday");
+      dayNames.add("Tuesday");
+      dayNames.add("Wednesday");
+      dayNames.add("Thursday");
+      dayNames.add("Friday");
+      dayNames.add("Saturday");
+      days = dayNames.elements();
+      
+      while (days.hasMoreElements()) {
+         System.out.println(days.nextElement()); 
+      }
+   }
+}
