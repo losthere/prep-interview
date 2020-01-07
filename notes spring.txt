@@ -1,0 +1,25 @@
+Clone Binary Tree with  Random Pointer
+https://www.techiedelight.com/clone-a-binary-tree-with-random-pointers/
+
+Construct Tree from Pre-order Traversal
+https://www.geeksforgeeks.org/construct-a-special-tree-from-given-preorder-traversal/
+
+Leaves to DLL
+https://www.geeksforgeeks.org/connect-leaves-doubly-linked-list/
+
+Palindromic Array
+https://www.geeksforgeeks.org/find-minimum-number-of-merge-operations-to-make-an-array-palindrome/
+
+Count ways to N'th Stair(Order does not matter)
+fibonacci
+
+
+@RestController vs @Controller
+
+@RestController = @Controller + @RestResponse
+@RestController was introduced in Spring4.0
+
+Differences between b tree and b+ tree
+
+trim(emp.name)
+difference between static and non static block in java
